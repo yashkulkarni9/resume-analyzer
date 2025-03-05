@@ -20,21 +20,19 @@ function App() {
 
     try {
       const response = await axios.post(
-        "https://79tcovlydg.execute-api.us-east-1.amazonaws.com/dev",  // Replace with your actual API Gateway URL
+        "https://79tcovlydg.execute-api.us-east-1.amazonaws.com/dev",
         formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
 
+      console.log("Response:", response);
       setMessage("Resume uploaded successfully!");
     } catch (error) {
-      console.error("Upload failed:", error);
+      console.error("Upload failed:", error.response ? error.response.data : error.message);
       setMessage("Upload failed. Please try again.");
     }
-  };
+};
+
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
